@@ -1,122 +1,103 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from 'react';
+import { useTheme } from './contexts/ThemeContext';
+
+const sections = [
+  { key: 'tomac', title: 'Tomac' },
+  { key: 'fullstack', title: 'Fullstack' },
+  { key: 'humaniora', title: 'Humaniora' },
+  { key: '3d', title: '3D-grafik' },
+  { key: 'sound', title: 'Ljuddesign' },
+  { key: 'contact', title: 'Kontakt' },
+] as const;
+
+type Section = typeof sections[number];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { isDark, toggleTheme } = useTheme();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const currentSection = sections[currentIndex];
+
+  const goPrev = () => setCurrentIndex((prev) => (prev - 1 + sections.length) % sections.length);
+  const goNext = () => setCurrentIndex((prev) => (prev + 1) % sections.length);
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] flex items-center justify-center p-8 lg:p-16 font-light">
+      {/* Huvudcontainer – max bredd och höjd för att matcha din mockup */}
+      <div className="flex w-full max-w-[1480px] h-[88vh] relative">
 
-      <div className="ticks"></div>
+        {/* VÄNSTER KOLUMN */}
+        <div className="w-[440px] flex-shrink-0 flex flex-col justify-center items-center relative">
+          {/* Dark mode prick */}
+          <button
+            onClick={toggleTheme}
+            className="absolute top-8 left-8 w-7 h-7 rounded-full border-2 border-[var(--text)] flex items-center justify-center hover:scale-110 transition-transform text-xl"
+            aria-label="Växla tema"
+          >
+            ●
+          </button>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+          {/* Stor rubrik – endast en åt gången */}
+          <h1 className="text-7xl lg:text-8xl tracking-tighter text-center mb-12">
+            {currentSection.title}
+          </h1>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+          {/* HORISONTELL NAV – linje + trianglar */}
+          <div className="flex items-center w-80">
+            <button
+              onClick={goPrev}
+              className="text-5xl hover:text-gray-400 transition-colors px-4 py-2"
+              aria-label="Föregående"
+            >
+              ◀
+            </button>
+
+            <div className="flex-1 h-px bg-[var(--text)]" />
+
+            <button
+              onClick={goNext}
+              className="text-5xl hover:text-gray-400 transition-colors px-4 py-2"
+              aria-label="Nästa"
+            >
+              ▶
+            </button>
+          </div>
+        </div>
+
+        {/* VERTIKAL DIVIDER – nu med trianglar upp/ner */}
+        <div className="w-px bg-[var(--text)] mx-12 lg:mx-24 relative flex flex-col justify-between py-8">
+          {/* Övre triangel (klickbar senare för scroll upp) */}
+          <button className="text-4xl hover:text-gray-400 transition-colors">
+            ▲
+          </button>
+
+          {/* Nedre triangel (klickbar senare för scroll ner) */}
+          <button className="text-4xl hover:text-gray-400 transition-colors">
+            ▼
+          </button>
+        </div>
+
+        {/* HÖGER KOLUMN – responsiv */}
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="flex-1 overflow-auto pr-8">
+            <div className="text-xl max-w-2xl leading-relaxed">
+              {currentSection.key === 'tomac' && (
+                <p>Här kommer en kort, personlig presentation av mig – Tomac. Fullstackutvecklare, 3D-grafiker, ljuddesigner och humanist med över 260 hp från Lunds universitet.</p>
+              )}
+              {currentSection.key === 'fullstack' && (
+                <p>Här lägger vi in mina projekt och kunskaper inom React, TypeScript, Node m.m.</p>
+              )}
+              {currentSection.key === 'humaniora' && (
+                <p>Mina akademiska studier inom humaniora vid Lunds universitet...</p>
+              )}
+              {currentSection.key === '3d' && <p>Här kommer galleri med 3D-grafik...</p>}
+              {currentSection.key === 'sound' && <p>Här kommer information om ljuddesign...</p>}
+              {currentSection.key === 'contact' && <p>Kontaktinformation + länkar till GitHub och LinkedIn.</p>}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
