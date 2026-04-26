@@ -7,13 +7,13 @@
 }
 
 :root {
-  --bg: #f8f8f8;
-  --text: #111111;
+  --bg: #BFBFBF;
+  --text: #474747;
 }
 
 .dark {
-  --bg: #111111;
-  --text: #f8f8f8;
+  --bg: #363636;
+  --text: #c0bfbf;
 }
 
 body {

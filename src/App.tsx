@@ -28,8 +28,12 @@ function App() {
         {/* VÄNSTER KOLUMN */}
         <div className="left-column">
           {/* Dark mode prick */}
-          <button onClick={toggleTheme} className="theme-toggle" aria-label="Växla tema">
-            ●
+          <button 
+            onClick={toggleTheme} 
+            className="theme-toggle" 
+            aria-label="Växla tema"
+          >
+            {/* Inget innehåll här */}
           </button>
 
           <h1 className="section-title">{currentSection.title}</h1>
