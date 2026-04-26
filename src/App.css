@@ -1,0 +1,121 @@
+.app-container {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  font-weight: 300;
+}
+
+.main-content {
+  display: flex;
+  width: 100%;
+  max-width: 1480px;
+  height: 85vh;
+  gap: 5rem;
+  position: relative;
+}
+
+.left-column {
+  width: 420px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid var(--text);
+  border-radius: 50%;
+  background: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+.section-title {
+  font-size: 5.5rem;
+  line-height: 1;
+  letter-spacing: -4px;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  width: 320px;
+}
+
+.nav-triangle {
+  font-size: 3rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 1rem;
+  color: var(--text);
+  transition: color 0.2s;
+}
+
+.nav-triangle:hover {
+  color: #888;
+}
+
+.nav-line {
+  flex: 1;
+  height: 2px;
+  background-color: var(--text);
+}
+
+.vertical-divider {
+  width: 2px;
+  background-color: var(--text);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 0;
+}
+
+.scroll-arrow {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--text);
+  padding: 0.5rem;
+}
+
+.right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+
+.content-text {
+  font-size: 1.35rem;
+  line-height: 1.7;
+  max-width: 38rem;
+}
