@@ -229,6 +229,7 @@ width: 460px;
 .content-area {
   flex: 1;
   overflow-y: auto;
+  padding-top: 4rem;
   padding-right: 1rem;
 }
 
