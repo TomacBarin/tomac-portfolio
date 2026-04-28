@@ -218,12 +218,13 @@
 /* HÖGER KOLUMN                                  */
 /* ============================================= */
 .right-column {
-width: 460px;           
-  flex-shrink: 0;         
-  max-width: 460px;   
+  width: 460px;
+  max-width: 460px;
+  flex-shrink: 0;
   padding-top: 80px;
-
   
+  /* Det viktigaste: sluta sträcka ut sig */
+  align-self: flex-start;     /* eller center om du vill centrera vertikalt */
   
   /* Gör den till flex-column så .content-area kan växa internt */
   display: flex;
@@ -232,9 +233,8 @@ width: 460px;
   /* Justera höjden efter vad du vill */
   /* height: auto;           ← default nu */
   max-height: 90%;       
-  
-  
 }
+
 
 /* ============================================= */
 /* INNEHÅLLSOMRÅDE (scrollbar del)               */
