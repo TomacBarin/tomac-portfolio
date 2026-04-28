@@ -49,6 +49,8 @@ function App() {
         {/* VERTIKAL DIVIDER */}
         <div className="vertical-divider">
           <button className="scroll-arrow up">▲</button>
+          {/* Själva linjen */}
+          <div className="vertical-line"></div>
           <button className="scroll-arrow down">▼</button>
         </div>
 

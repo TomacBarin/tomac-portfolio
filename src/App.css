@@ -47,8 +47,8 @@
   top: 2rem;
   left: 2rem;
   
-  width: 2.0rem;
-  height: 2.0rem;
+  width: 1rem;
+  height: 1rem;
   
   background: var(--text);
   border: none;
@@ -106,13 +106,20 @@
 /* VERTIKAL DIVIDER (mittlinjen med pilar)      */
 /* ============================================= */
 .vertical-divider {
-  width: 1px;
-  background-color: var(--text);
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between;   /* pilarna i toppen och botten */
+  height: 100%;                     
+  position: relative;
+}
+
+/* SJÄLVA LINJEN  */
+.vertical-line {
+  width: 1px;
+  background-color: var(--text);
+  flex-grow: 1;           
+  max-height: 80%;        
   
 }
 
@@ -123,8 +130,8 @@
   cursor: pointer;
   color: var(--text);
   padding: 0.5rem;
+  z-index: 2;                    /* säkerställ att de ligger över linjen */
 }
-
 .scroll-arrow:hover {
   color: var(--bg);
 }
